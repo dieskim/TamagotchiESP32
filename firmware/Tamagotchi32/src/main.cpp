@@ -3,7 +3,7 @@
  *
  * Copyright (C) 2022 Gary Kwok - Arduino Uno Implementation
  * Copyright (C) 2022 Marcel Ochsendorf - ESP32 Plattform Support
- * 
+ *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
  * as published by the Free Software Foundation; either version 2
@@ -98,6 +98,7 @@ static bool_t matrix_buffer[LCD_HEIGHT][LCD_WIDTH / 8] = {{0}};
 static bool_t icon_buffer[ICON_NUM] = {0};
 static cpu_state_t cpuState;
 static unsigned long lastSaveTimestamp = 0;
+static long last_interaction = 0;
 /************************************/
 
 static void hal_halt(void)
@@ -112,11 +113,13 @@ static void hal_log(log_level_t level, char *buff, ...)
 
 static void hal_sleep_until(timestamp_t ts)
 {
-  // int32_t remaining = (int32_t) (ts - hal_get_timestamp());
-  // if (remaining > 0) {
-  // delayMicroseconds(1);
-  // delay(1);
-  //}
+  int32_t remaining = (int32_t)(ts - hal_get_timestamp());
+  if (remaining > 0)
+  {
+#ifdef ENABLE_DEEPSLEEP
+    enter_deepsleep(remaining);
+#endif
+  }
 }
 
 static timestamp_t hal_get_timestamp(void)
@@ -451,6 +454,28 @@ void setup()
 
 uint32_t right_long_press_started = 0;
 
+void upload_state()
+{
+}
+
+void enter_deepsleep(int _ms)
+{
+#ifndef
+  return;
+#endif
+  // save CURRENT STATE
+  saveStateToEEPROM(&cpuState);
+
+  // ENTER DEEPSLEEP
+#if defined(ESP32)
+  esp_sleep_enable_timer_wakeup(_ms * 1000);
+  esp_deep_sleep_start();
+#elif defined(ESP8266)
+  ESP.deepSleep(_ms * 1000);
+  yield();
+#endif
+}
+
 void loop()
 {
   tamalib_mainloop_step_by_step();
@@ -471,9 +496,24 @@ void loop()
 #endif
     }
   }
-  else
+  else if (digitalRead(PIN_BTN_R) == BUTTON_VOLTAGE_LEVEL_PRESSED)
   {
-    right_long_press_started = millis();
-  }
+    if (millis() - right_long_press_started > AUTO_SAVE_MINUTES * 1000)
+    {
+#if defined(ESP8266) || defined(ESP32)
+      upload_state();
 #endif
-}
+    }
+  }
+  else if (digitalRead(PIN_BT_L) == BUTTON_VOLTAGE_LEVEL_PRESSED)
+  {
+    if (millis() - right_long_press_started > AUTO_SAVE_MINUTES * 1000)
+    {
+      enter_deepsleep(DEEPSLEEP_INTERVAL * 1000);
+    }
+    else
+    {
+      right_long_press_started = millis();
+    }
+#endif
+  }

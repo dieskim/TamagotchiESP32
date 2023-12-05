@@ -29,6 +29,11 @@ And use the `build` task to build for the selected platforms. Next run `Upload` 
 
 ![Circuit Diagram](hardware/TamagotchiESP32_schematic_Steckplatine.png)
 
+#### NOTE
+
+The firmware supports the `ESP8266` platform too, please connect the `RST` and `D0` pin to enable the deepsleep feature.
+
+
 ### CASE
 
 The case can be found here [CASE](https://www.thingiverse.com/thing:2374552)
