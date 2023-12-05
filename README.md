@@ -7,20 +7,24 @@
 ![Tamagotchi P1 Actual Devices](images/TamaP1_devices.jpg)
 
 
-## How to build and run
+## BUILD
+
+
+
+### Firmware
 
 Use Platformio. Run `build` task to build for all platforms. Next run `Upload` task for specific platoform
-
-
-### Game notes
-
-- To activate your pet, you have to configure the clock by pressing the middle button. Otherwise, your pet will not alive.
-- A long click on "back" button for 5 seconds, will reset memory back to egg state
-
 
 ### Circuit Diagram
 
 ![Circuit Diagram](hardware/TamagotchiESP32_schematic_Steckplatine.png)
+
+![opened case](images/IMG_7096.JPG)
+
+### CASE
+
+The case can be found here [CASE](https://www.thingiverse.com/thing:2374552)
+
 
 ### Example build
 
@@ -35,11 +39,19 @@ For the example build the following parts were used:
 * StepUp converter
 
 
-The case can be found here [CASE](https://www.thingiverse.com/thing:2374552)
+## Game notes
 
-#### Opened Case
+- To activate your pet, you have to configure the clock by pressing the middle button. Otherwise, your pet will not alive.
+- A long click on "back" button for 5 seconds, will reset memory back to egg state
 
-![opened case](images/IMG_7096.JPG)
+
+
+
+
+
+
+
+
 
 
 ### License
