@@ -10,7 +10,6 @@
 ## BUILD
 
 
-
 ### Firmware
 
 First, install Visual Code and the PlatformIO plugin.
@@ -33,7 +32,7 @@ And use the `build` task to build for the selected platforms. Next run `Upload` 
 ### CASE
 
 The case can be found here [CASE](https://www.thingiverse.com/thing:2374552)
-
+A additional case spacer can be found in the `hardware/stl` folder
 ### Example build
 
 For the example build the following parts were used:
