@@ -7,7 +7,15 @@
 ![Tamagotchi P1 Actual Devices](images/TamaP1_devices.jpg)
 
 
-## BUILD
+## Improvements
+
+The repo adds a few improvements over the original repo [anabolyc/Tamagotchi](https://github.com/anabolyc/Tamagotchi):
+
+* added `ESP32` platform
+* added experimental deepsleep feature for `ESP32` and `ESP8266`
+* flexible button configuration
+
+## Build
 
 
 ### Firmware
@@ -34,7 +42,7 @@ And use the `build` task to build for the selected platforms. Next run `Upload` 
 The firmware supports the `ESP8266` platform too, please connect the `RST` and `D0` pin to enable the deepsleep feature.
 
 
-### CASE
+### Case
 
 The case can be found here [CASE](https://www.thingiverse.com/thing:2374552)
 A additional case spacer can be found in the `hardware/stl` folder
@@ -63,11 +71,5 @@ For the example build the following parts were used:
 
 
 
-
-
-
-
-
-
 ### License
-ArduinoGotchi is distributed under the GPLv2 license. See the LICENSE file for more information.
+The base project ArduinoGotchi is distributed under the GPLv2 license. See the LICENSE file for more information.
