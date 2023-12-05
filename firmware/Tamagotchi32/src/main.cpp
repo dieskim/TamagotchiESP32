@@ -466,6 +466,10 @@ void enter_deepsleep(int _ms)
   // save CURRENT STATE
   saveStateToEEPROM(&cpuState);
 
+
+  //DISABLE DISPLAY
+  display.clear();
+
   // ENTER DEEPSLEEP
 #if defined(ESP32)
   esp_sleep_enable_timer_wakeup(_ms * 1000);
