@@ -3,7 +3,7 @@
  *
  * Copyright (C) 2022 Gary Kwok - Arduino Uno Implementation
  * Copyright (C) 2022 Marcel Ochsendorf - ESP32 Plattform Support
- * 
+ *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
  * as published by the Free Software Foundation; either version 2
@@ -51,6 +51,19 @@ U8G2_SSD1306_128X64_NONAME_2_HW_I2C display(U8G2_R2);
 U8G2_SSD1306_128X64_NONAME_2_HW_I2C display(U8G2_MIRROR);
 #endif
 
+#if defined(ESP8266_KIT_A)
+#define PIN_BTN_L 12
+#define PIN_BTN_M 13
+#define PIN_BTN_R 15
+#define PIN_BUZZER 2
+#elif defined(ESP8266_KIT_B)
+#define PIN_BTN_L 12
+#define PIN_BTN_M 13
+#define PIN_BTN_R 15
+#define PIN_BUZZER 0
+#define ENABLE_TAMA_SOUND
+#define ENABLE_TAMA_SOUND_ACTIVE_LOW
+
 #if defined(ESP32)
 #define PIN_BTN_L 18
 #define PIN_BTN_M 19
@@ -59,11 +72,6 @@ U8G2_SSD1306_128X64_NONAME_2_HW_I2C display(U8G2_MIRROR);
 #define BUZZER_CHANNEL 0
 #define TONE_CHANNEL 15
 
-#if defined(ESP8266)
-#define PIN_BTN_L 12
-#define PIN_BTN_M 13
-#define PIN_BTN_R 15
-#define PIN_BUZZER 2
 #else
 #define PIN_BTN_L 2
 #define PIN_BTN_M 3
