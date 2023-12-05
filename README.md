@@ -31,7 +31,7 @@ Select your desired plattform:
 * esp32
 
 
-And use the `build` task to build for the selected platforms. Next run `Upload` to upload the firmware to the connected board.
+and use the `build` task to build for the selected platform. Next run `Upload` or `Upload and Monitor` to upload the firmware to the connected board.
 
 ### Circuit Diagram
 
