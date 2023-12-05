@@ -64,7 +64,7 @@ U8G2_SSD1306_128X64_NONAME_2_HW_I2C display(U8G2_MIRROR);
 #define ENABLE_TAMA_SOUND
 #define ENABLE_TAMA_SOUND_ACTIVE_LOW
 
-#if defined(ESP32)
+#elif defined(ESP32)
 #define PIN_BTN_L 18
 #define PIN_BTN_M 19
 #define PIN_BTN_R 23
