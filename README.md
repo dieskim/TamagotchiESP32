@@ -13,18 +13,26 @@
 
 ### Firmware
 
-Use Platformio. Run `build` task to build for all platforms. Next run `Upload` task for specific platoform
+First, install Visual Code and the PlatformIO.
+Open the `firmware/Tamagotchi32` folder as `Workspace-Folder`
+
+Open the Platformio by clicking on the Icon on the left sidebar.
+Select your desired plattform:
+
+* nanoatmega328
+* esp8266
+* esp32
+
+
+And use the `build` task to build for the selected platforms. Next run `Upload` to upload the firmware to the connected board.
 
 ### Circuit Diagram
 
 ![Circuit Diagram](hardware/TamagotchiESP32_schematic_Steckplatine.png)
 
-![opened case](images/IMG_7096.JPG)
-
 ### CASE
 
 The case can be found here [CASE](https://www.thingiverse.com/thing:2374552)
-
 
 ### Example build
 
@@ -37,6 +45,9 @@ For the example build the following parts were used:
 * 1s USB-C lipo charging board
 * 1s 3.7v 220mAh LIPO
 * StepUp converter
+
+![opened case](images/IMG_7096.JPG)
+
 
 
 ## Game notes
