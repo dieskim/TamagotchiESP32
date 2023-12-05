@@ -166,6 +166,7 @@ static void hal_play_frequency(bool_t en)
 #if defined(ESP32)
     esp32_tone(PIN_BUZZER, current_freq, 500, BUZZER_CHANNEL);
 #else
+    tone(PIN_BUZZER, current_freq);
 #endif
   }
   else
@@ -173,6 +174,10 @@ static void hal_play_frequency(bool_t en)
 #if defined(ESP32)
     esp32_noTone(PIN_BUZZER, BUZZER_CHANNEL);
 #else
+    noTone(PIN_BUZZER);
+#ifdef ENABLE_TAMA_SOUND_ACTIVE_LOW
+    digitalWrite(PIN_BUZZER, HIGH);
+#endif
 #endif
   }
 #endif
