@@ -121,7 +121,7 @@ static void hal_sleep_until(timestamp_t ts)
 
 static timestamp_t hal_get_timestamp(void)
 {
-  return millis() * 1000;
+  return millis() * (1000 / SPEED_DIVIDER);
 }
 
 static void hal_update_screen(void)
