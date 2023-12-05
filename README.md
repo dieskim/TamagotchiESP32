@@ -65,7 +65,8 @@ For the example build the following parts were used:
 ## Game notes
 
 - To activate your pet, you have to configure the clock by pressing the middle button. Otherwise, your pet will not alive.
-- A long click on "back" button for 5 seconds, will reset memory back to egg state
+- A long click on "middle" button for 5 seconds, will reset memory back to egg state
+- A long click on "left" button for 5 seconds, will enter the deepsleep mode for 10 minutes
 
 
 
