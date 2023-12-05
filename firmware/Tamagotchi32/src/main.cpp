@@ -1,8 +1,9 @@
 /*
- * ArduinoGotchi - A real Tamagotchi emulator for Arduino UNO
+ * ArduinoGotchi - A real Tamagotchi emulator for Arduino ESP32
  *
- * Copyright (C) 2022 Gary Kwok
- *
+ * Copyright (C) 2022 Gary Kwok - Arduino Uno Implementation
+ * Copyright (C) 2022 Marcel Ochsendorf - ESP32 Plattform Support
+ * 
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
  * as published by the Free Software Foundation; either version 2
