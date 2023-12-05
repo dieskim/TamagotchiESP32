@@ -13,7 +13,7 @@
 
 ### Firmware
 
-First, install Visual Code and the PlatformIO.
+First, install Visual Code and the PlatformIO plugin.
 Open the `firmware/Tamagotchi32` folder as `Workspace-Folder`
 
 Open the Platformio by clicking on the Icon on the left sidebar.
