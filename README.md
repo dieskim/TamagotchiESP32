@@ -35,6 +35,15 @@ and use the `build` task to build for the selected platform. Next run `Upload` o
 
 ### Circuit Diagram
 
+| FROM ESP32    | TO COMPONENT                     |
+|---------------|----------------------------------|
+| 3v3           | VDD (DISPLAY, PULL-UP RESISTORS) |
+| GND           | GND (DISPLAY, BUZZER, BUTTONS)   |
+| G22           | SCL (DISPLAY)                    |
+| G21           | SDA (DISPLAY)                    |
+| G15           | BUZZER                           |
+| G23, G18, G19 | BUTTONS                          |
+
 ![Circuit Diagram](hardware/TamagotchiESP32_schematic_Steckplatine.png)
 
 #### NOTE
