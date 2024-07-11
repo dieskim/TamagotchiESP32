@@ -61,12 +61,12 @@ For the example build the following parts were used:
 
 * ESP32 Devboard
 * 0.96" OLED Display `SSD1306 I2C 128x64`
-* 3x buttons
-* 3x 10k pull-up resistors
-* 1s USB-C lipo charging board
-* 1s 3.7v 220mAh LIPO with protection board (e.g. `XZD-2004`, better `TPS63020`)
-* StepUp converter (e.g. `MT3608` or
-* Buzzer
+* 3x Buttons (e.g. `Keyestudio Digital Push Button`, resistors already included)
+* [OPTIONAL] 3x 10k pull-up resistors
+* 1s USB-C lipo charging board (e.g. `DFRobot DFR0668`)
+* 1s 3.7v 220mAh LIPO with protection board (e.g. `XZD-2004`)
+* StepUp converter (e.g. `MT3608`, better `TPS63020`)
+* Buzzer (e.g. `KY-006`)
 
 ![opened case](images/IMG_7096.JPG)
 
