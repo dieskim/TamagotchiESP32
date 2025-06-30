@@ -3,7 +3,7 @@
  *
  * Copyright (C) 2022 Gary Kwok - Arduino Uno Implementation
  * Copyright (C) 2022 Marcel Ochsendorf - ESP32 Plattform Support
- *
+ * 
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
  * as published by the Free Software Foundation; either version 2
@@ -58,13 +58,12 @@ U8G2_SSD1306_128X64_NONAME_2_HW_I2C display(U8G2_MIRROR);
 #define PIN_BUZZER 15
 #define BUZZER_CHANNEL 0
 #define TONE_CHANNEL 15
-
-#if defined(ESP8266)
+#elif defined(ESP8266)
 #define PIN_BTN_L 12
 #define PIN_BTN_M 13
 #define PIN_BTN_R 15
 #define PIN_BUZZER 2
-#else
+#else // Assume nanoatmega328 or other platforms
 #define PIN_BTN_L 2
 #define PIN_BTN_M 3
 #define PIN_BTN_R 4
@@ -98,7 +97,6 @@ static bool_t matrix_buffer[LCD_HEIGHT][LCD_WIDTH / 8] = {{0}};
 static bool_t icon_buffer[ICON_NUM] = {0};
 static cpu_state_t cpuState;
 static unsigned long lastSaveTimestamp = 0;
-static long last_interaction = 0;
 /************************************/
 
 static void hal_halt(void)
@@ -113,13 +111,11 @@ static void hal_log(log_level_t level, char *buff, ...)
 
 static void hal_sleep_until(timestamp_t ts)
 {
-  int32_t remaining = (int32_t)(ts - hal_get_timestamp());
-  if (remaining > 0)
-  {
-#ifdef ENABLE_DEEPSLEEP
-    enter_deepsleep(remaining);
-#endif
-  }
+  // int32_t remaining = (int32_t) (ts - hal_get_timestamp());
+  // if (remaining > 0) {
+  // delayMicroseconds(1);
+  // delay(1);
+  //}
 }
 
 static timestamp_t hal_get_timestamp(void)
@@ -416,9 +412,9 @@ void setup()
 {
   Serial.begin(SERIAL_BAUD);
 
-  pinMode(PIN_BTN_L, INPUT);
-  pinMode(PIN_BTN_M, INPUT);
-  pinMode(PIN_BTN_R, INPUT);
+  pinMode(PIN_BTN_L, INPUT_PULLUP);
+  pinMode(PIN_BTN_M, INPUT_PULLUP);
+  pinMode(PIN_BTN_R, INPUT_PULLUP);
 
 #if defined(ESP32)
   ledcSetup(BUZZER_CHANNEL, NOTE_C4, 8);
@@ -454,32 +450,6 @@ void setup()
 
 uint32_t right_long_press_started = 0;
 
-void upload_state()
-{
-}
-
-void enter_deepsleep(int _ms)
-{
-#ifndef
-  return;
-#endif
-  // save CURRENT STATE
-  saveStateToEEPROM(&cpuState);
-
-
-  //DISABLE DISPLAY
-  display.clear();
-
-  // ENTER DEEPSLEEP
-#if defined(ESP32)
-  esp_sleep_enable_timer_wakeup(_ms * 1000);
-  esp_deep_sleep_start();
-#elif defined(ESP8266)
-  ESP.deepSleep(_ms * 1000);
-  yield();
-#endif
-}
-
 void loop()
 {
   tamalib_mainloop_step_by_step();
@@ -500,24 +470,9 @@ void loop()
 #endif
     }
   }
-  else if (digitalRead(PIN_BTN_R) == BUTTON_VOLTAGE_LEVEL_PRESSED)
+  else
   {
-    if (millis() - right_long_press_started > AUTO_SAVE_MINUTES * 1000)
-    {
-#if defined(ESP8266) || defined(ESP32)
-      upload_state();
-#endif
-    }
+    right_long_press_started = millis();
   }
-  else if (digitalRead(PIN_BT_L) == BUTTON_VOLTAGE_LEVEL_PRESSED)
-  {
-    if (millis() - right_long_press_started > AUTO_SAVE_MINUTES * 1000)
-    {
-      enter_deepsleep(DEEPSLEEP_INTERVAL * 1000);
-    }
-    else
-    {
-      right_long_press_started = millis();
-    }
 #endif
-  }
+}
